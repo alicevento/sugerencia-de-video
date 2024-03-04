@@ -22,16 +22,20 @@ class Multimedia {
 //Clase Reproductor:
 
 class Reproductor extends Multimedia {
-    constructor(id) {
+    constructor(url, id) {
         super (url);
         this._id = id;
     }
     playMultimedia() {
-        //let multimedia = new Multimedia(url);
+        let multimedia = new Multimedia(url);
         let iframe = document.getElementById(id);
         iframe.src = multimedia.url;
     }
 }
+
+const musica = new Reproductor (url, "musica");
+const peliculas = new Reproductor ("https://www.youtube.com/watch?v=YF1eYbfbH5k", "peliculas");
+const series = new Reproductor (url, "series");
 
 
 
