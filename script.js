@@ -40,6 +40,31 @@ const series = new Reproductor (url, "series");
 
 
 
+// Construccion patron modulo
+
+let iife = (function() {
+    // Función privada para insertar el video en el documento HTML
+    // CReo 2 Funciones, publico y otra privada (sumanumero, es un Obj.)
+    function sumarNumeros(a, b) {
+        const suma = a +b;
+        console.log("Esta es la suma: " ,suma); 
+    }
+
+    // Función pública para insertar el video con parámetros (url, id)
+   
+    // Retorno de las funciones públicas
+    return { 
+        llamaSumaNumeros: (a,b) => sumarNumeros(a,b)
+          }
+
+}) ();
+
+//Llamado al método público de la función iife
+// iife retorna un Objeto
+console.log("Valor de iife: ", iife)
+
+iife.llamaSumaNumeros(4,2);
+
 
 
 
