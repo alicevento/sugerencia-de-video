@@ -1,88 +1,63 @@
 // Construccion patron modulo
 let iife = (function () {
-  // Función privada para insertar el video en el documento HTML
-  // CReo 2 Funciones, publico y otra privada (sumanumero, es un Obj.)
   function privada(url, id) {
     console.log("Url: ", url);
     console.log("Id: ", id);
     id.setAttribute("src", url);
   }
-  // Función pública para insertar el video con parámetros (url, id)
-  // Retorno de las funciones públicas
   return {
-    publica: (url, id) => privada(url, id),
+    publica: function(url, id) {
+      privada(url, id);
+    }
   };
 })();
-//Llamado al método público de la función iife
-// iife retorna un Objeto
-console.log("Valor de iife: ", iife);
-// iife.llamaSumaNumeros(4,2);
-
-// Definiendo la clase Padre
-
 class Multimedia {
   constructor(url) {
     let _url = url;
-    
     this.getUrl = function() {
       return _url;
     };
-    
-    this.setUrl = function(Url) {
-      _url = Url;
-    };
+    this.setUrl = () => _url;
   }
-
   setInicio() {
     return "Este método es para realizar un cambio en la URL del video";
   }
 }
-
 class Reproductor extends Multimedia {
   constructor(url, id) {
     super(url);
     let _id = id;
-    
     this.getId = function() {
       return _id;
     };
-    
     this.setId = function(Id) {
       _id = Id;
     };
   }
-
   playMultimedia() {
-    iife.publica(this.url, this.id);
+    iife.publica(this.getUrl(), this.getId());
   }
-
   setInicio(tiempo) {
-    this.id.setAttribute("src", `${this.url}?start=${tiempo}`);
+    this.getId().setAttribute("src", `${this.getUrl()}?start=${tiempo}`);
   }
 }
-
 //Vamos a instanciar una clase
 const idMusica = document.getElementById("musica");
 let musica = new Reproductor(
-  "https://www.youtube.com/embed/5PSNL1qE6VY",
-  idMusica
+"https://www.youtube.com/embed/WM8bTdBs-cw?si=wDAd7_l-I-Zew0nf",
+idMusica
 );
-
 musica.playMultimedia();
-
 const idPelicula = document.getElementById("peliculas");
 let pelicula = new Reproductor(
-  "https://www.youtube.com/embed/5PSNL1qE6VY",
-  idPelicula
+"https://www.youtube.com/embed/5PSNL1qE6VY",
+idPelicula
 );
-
 pelicula.playMultimedia();
 pelicula.setInicio(20);
-
 const idSeries = document.getElementById("series");
 let series = new Reproductor(
-  "https://www.youtube.com/embed/5PSNL1qE6VY",
-  idSeries
+"https://www.youtube.com/embed/xa8lhVwQBw4?si=uTmioiMLjAB7vxJD",
+idSeries
 );
-
 series.playMultimedia();
