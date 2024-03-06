@@ -22,16 +22,15 @@ console.log("Valor de iife: ", iife);
 
 class Multimedia {
   constructor(url) {
-    this._urlurl = url;
-  }
-  //Getter
-  get url() {
-    return this._url;
-  }
-
-  // Setter
-  set url(newUrl) {
-    this._url = newUrl;
+    let _url = url;
+    
+    this.getUrl = function() {
+      return _url;
+    };
+    
+    this.setUrl = function(Url) {
+      _url = Url;
+    };
   }
 
   setInicio() {
@@ -42,17 +41,15 @@ class Multimedia {
 class Reproductor extends Multimedia {
   constructor(url, id) {
     super(url);
-    this._id = id;
-  }
-
-  // Getter
-  get id() {
-    return this._id;
-  }
-
-  // Setter
-  set id(id) {
-    this._id = id;
+    let _id = id;
+    
+    this.getId = function() {
+      return _id;
+    };
+    
+    this.setId = function(Id) {
+      _id = Id;
+    };
   }
 
   playMultimedia() {
